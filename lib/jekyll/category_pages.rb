@@ -163,9 +163,10 @@ module Jekyll
       @category = category
       @posts_in_category = posts_in_category
       @my_paginator = nil
+      @title = site.data['categories'][category] || category
 
       self.read_yaml(@base, category_layout)
-      self.data.merge!('title' => category)
+      self.data.merge!('title' => @title)
       if use_paginator
         @my_paginator = CategoryPager.new
         self.data.merge!('paginator' => @my_paginator)
